@@ -2,6 +2,10 @@ require 'sinatra/base'
 
 class Bookmark_manager < Sinatra::Base
 
+  get '/' do
+    erb :'links/home'
+  end
+
   get '/links' do
     @links = Link.all
     erb :'links/index'
