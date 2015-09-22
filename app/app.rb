@@ -3,7 +3,7 @@ require './app/data_mapper_setup'
 
 class Bookmark_manager < Sinatra::Base
   get '/' do
-    erb :'links/home'
+    redirect to('/links')
   end
 
   get '/links' do
