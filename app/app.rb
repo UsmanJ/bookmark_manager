@@ -1,8 +1,7 @@
 require 'sinatra/base'
-require './data_mapper_setup'
+require './app/data_mapper_setup'
 
 class Bookmark_manager < Sinatra::Base
-
   get '/' do
     erb :'links/home'
   end
@@ -21,6 +20,5 @@ class Bookmark_manager < Sinatra::Base
     redirect to('/links')
   end
 
-# start the server if ruby file executed directly
-run! if app_file == Bookmark_manager
+  run! if app_file == Bookmark_manager
 end
