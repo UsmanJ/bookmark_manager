@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require './data_mapper_setup'
 
 class Bookmark_manager < Sinatra::Base
 
