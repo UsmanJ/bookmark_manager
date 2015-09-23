@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gem 'sinatra'
 gem 'database_cleaner'
+gem 'bcrypt'
 
 group :test do
   gem 'rspec'
