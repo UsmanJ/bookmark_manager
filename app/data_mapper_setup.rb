@@ -1,4 +1,5 @@
 require 'data_mapper'
+require 'factory_girl'
 require 'sinatra/base'
 require 'sinatra/flash'
 require 'dm-validations'
