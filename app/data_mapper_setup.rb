@@ -1,4 +1,6 @@
 require 'data_mapper'
+require 'sinatra/base'
+require 'sinatra/flash'
 require 'dm-validations'
 require './app/models/link'
 require './app/models/tag'
