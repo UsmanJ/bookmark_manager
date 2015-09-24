@@ -60,7 +60,8 @@ class Bookmark_manager < Sinatra::Base
   end
 
   delete '/sessions' do
-    flash.now[:notice]= ['goodbye!']
+    flash.now[:notice] = ['goodbye!']
+    # erb :'sessions/goodbye'
   end
 
   post '/sessions' do
