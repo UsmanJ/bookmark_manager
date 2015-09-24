@@ -1,7 +1,6 @@
 require_relative '../factories/user'
 
 feature 'User sign up' do
-
   scenario 'I can sign up as a new user' do
     user = build :user
     expect { sign_up(user) }.to change(User, :count).by(1)
@@ -34,11 +33,35 @@ feature 'User sign up' do
     expect(page).to have_content('Email is already taken')
   end
 
-  def sign_up(user)
-    visit '/users/new'
-    fill_in :email, with: user.email
-    fill_in :password, with: user.password
-    fill_in :password_confirmation, with: user.password_confirmation
-    click_button 'Sign up'
+  feature 'User sign in' do
+    let(:user) do
+      User.create(email: 'user@example.com',
+                  password: 'secret1234',
+                  password_confirmation: 'secret1234')
+    end
+
+    scenario 'with correct credentials' do
+      sign_in(email: user.email,   password: user.password)
+      expect(page).to have_content "Welcome, #{user.email}"
+    end
+
+    it 'does not authenticate when given an incorrect password' do
+      expect(User.authenticate(user.email, 'wrong_stupid_password')).to be_nil
+    end
+  end
+
+  feature 'User signs out' do
+    let(:user) do
+      User.create(email: 'usman@test.com',
+                  password: 'secret1234',
+                  password_confirmation: 'secret1234')
+    end
+
+    scenario 'while being signed in' do
+      sign_in(email: user.email,   password: user.password)
+      click_button 'Sign out'
+      expect(page).to have_content('goodbye!') # where does this message go?
+      expect(page).not_to have_content('Welcome, usman@test.com')
+    end
   end
 end

@@ -9,6 +9,7 @@ require 'capybara/rspec'
 require 'rspec'
 require 'database_cleaner'
 require 'factory_girl'
+require_relative 'helpers/session'
 
 Capybara.app = Bookmark_manager
 
@@ -17,7 +18,8 @@ RSpec.configure do |config|
   config.include Capybara::DSL
 
   config.include FactoryGirl::Syntax::Methods
-  # config.include FactoryGirl::Syntax::Methods
+
+  config.include SessionHelpers
 
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
