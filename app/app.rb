@@ -72,9 +72,9 @@ class Bookmark_manager < Sinatra::Base
   end
 
   post '/password_reset' do
-    p user = User.first(email: params[:Email])
+    user = User.first(email: params[:Email])
     if user
-      p user.password_token = random_token
+      user.password_token = random_token
       user.save
       flash.next[:notice] = 'Check your emails.'
       redirect('/password_reset')
@@ -82,6 +82,10 @@ class Bookmark_manager < Sinatra::Base
       flash.next[:notice] = 'Account does not exist.'
       redirect('/password_reset')
     end
+  end
+
+  get '/users/password_reset/:password_token' do
+    erb :'users/password_reset2'
   end
 
   helpers do
