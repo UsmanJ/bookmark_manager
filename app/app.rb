@@ -1,11 +1,14 @@
 require './app/data_mapper_setup'
+require 'sinatra/partial'
 
 class Bookmark_manager < Sinatra::Base
 
   use Rack::MethodOverride
   enable :sessions
   register Sinatra::Flash
+  register Sinatra::Partial
   set :session_secret, 'super secret'
+  set :partial_template_engine, :erb
 
   get '/' do
     redirect to('/links')
@@ -21,14 +24,8 @@ class Bookmark_manager < Sinatra::Base
   end
 
   post '/links' do
-    link = Link.create(url: params[:url], title: params[:title])
-    tag_list = params[:tag].split(' ')
-    tag_list.each do |each_tag|
-      tag = Tag.create(name: each_tag)
-      link.tags << tag
-    end
-    link.save
-    redirect to('/links')
+    output = ""
+    output << partial(:'../controllers/post_links')
   end
 
   get '/tags/:name' do
@@ -66,14 +63,8 @@ class Bookmark_manager < Sinatra::Base
   end
 
   post '/sessions' do
-    user = User.authenticate(params[:email], params[:password])
-    if user
-      session[:user_id] = user.id
-      redirect to('/links')
-    else
-      flash.now[:errors] = ['The email or password is incorrect']
-      erb :'sessions/new'
-    end
+    output = ""
+    output << partial(:'../controllers/post_sessions')
   end
 
   helpers do
