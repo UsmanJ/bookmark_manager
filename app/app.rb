@@ -74,7 +74,7 @@ class Bookmark_manager < Sinatra::Base
   post '/password_reset' do
     p user = User.first(email: params[:Email])
     if user
-      user.password_token = random_token
+      p user.password_token = random_token
       user.save
       flash.next[:notice] = 'Check your emails.'
       redirect('/password_reset')
