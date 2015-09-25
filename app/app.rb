@@ -67,9 +67,30 @@ class Bookmark_manager < Sinatra::Base
     output << partial(:'../controllers/post_sessions')
   end
 
+  get '/password_reset' do
+    erb :'users/password_reset'
+  end
+
+  post '/password_reset' do
+    p user = User.first(email: params[:Email])
+    if user
+      user.password_token = random_token
+      user.save
+      flash.next[:notice] = 'Check your emails.'
+      redirect('/password_reset')
+    else
+      flash.next[:notice] = 'Account does not exist.'
+      redirect('/password_reset')
+    end
+  end
+
   helpers do
     def current_user
       @current_user ||= User.get(session[:user_id])
+    end
+
+    def random_token
+      SecureRandom.urlsafe_base64
     end
   end
 

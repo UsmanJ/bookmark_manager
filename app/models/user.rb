@@ -4,21 +4,18 @@ class User
   include DataMapper::Resource
 
   attr_reader :password
-  attr_accessor :password_confirmation
+  attr_accessor :password_confirmation, :password_token
 
   validates_confirmation_of :password
 
   property :id, Serial
   property :email, String, required: true, unique: true
   property :password_digest, Text
+  property :password_token, Text
 
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
-  end
-
-  def self.authenticate(email, _password)
-    User.first(email: email)
   end
 
   def self.authenticate(email, password)
