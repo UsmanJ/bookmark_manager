@@ -1,5 +1,3 @@
-require 'coveralls'
-require 'simplecov'
 require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
