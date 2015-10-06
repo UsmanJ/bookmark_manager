@@ -1,4 +1,4 @@
-Bookmark Manager Challenge		![](https://travis-ci.org/UsmanJ/airport_challenge.svg?branch=master)	[![Coverage Status](https://coveralls.io/repos/makersacademy/airport_challenge/badge.svg?branch=master&service=github)](https://coveralls.io/github/makersacademy/airport_challenge?branch=master)
+Bookmark Manager Challenge		[![Build Status](https://travis-ci.org/UsmanJ/bookmark_manager.svg?branch=master)](https://travis-ci.org/UsmanJ/bookmark_manager)	[![Coverage Status](https://coveralls.io/repos/UsmanJ/bookmark_manager/badge.svg?branch=master&service=github)](https://coveralls.io/github/UsmanJ/bookmark_manager?branch=master)
 ======================
 
 Synopsis
