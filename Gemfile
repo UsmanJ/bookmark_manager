@@ -6,7 +6,6 @@ gem 'data_mapper'
 gem 'dm-postgres-adapter'
 gem 'sinatra-flash'
 gem 'sinatra-partial'
-gem 'do_postgres'
 
 group :test do
   gem 'rspec'
