@@ -8,6 +8,8 @@ gem 'sinatra-flash'
 gem 'sinatra-partial'
 
 group :test do
+  gem 'coveralls', require: false
+  gem 'simplecov'
   gem 'rspec'
   gem 'capybara'
   gem 'database_cleaner'
